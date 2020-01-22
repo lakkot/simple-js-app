@@ -3,31 +3,32 @@ var repository = [];
 // objects to fill the array
 var charmander = {
   name: 'Charmander',
-  height: 6,
+  height: 0.6,
   abilities: ['blaze', 'solar-power']
 }
 
 var bulbasaur = {
   name: 'Bulbasaur',
-  height: 7,
+  height: 0.7,
   abilities: ['chlorophyll', 'overgrow']
 }
 
 var squirtle = {
   name: 'Squirtle',
-  height: 5,
+  height: 0.5,
   abilities: ['rain-dish', 'torrent']
 }
+//add objects to pokemon array
 repository.push(charmander, bulbasaur, squirtle);
 
 
 console.log(repository);
 
-// iterate positions from the pokemon array
+// iterate name and height from the pokemon array, emphasize ones above 0.6 height
 for (i = 0; i < repository.length; i++) {
-  if (repository[i].height > 6) {
+  if (repository[i].height > 0.6) {
   document.write('<p>' + repository[i].name + ' (height: ' + repository[i].height + ') - Wow that\'s big! </p>');
-} else {
+  } else {
   document.write('<p>' + repository[i].name + ' (height: ' + repository[i].height + ') </p>');
-}
+  }
 }
