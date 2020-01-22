@@ -1,5 +1,6 @@
+// empty repository for pokemons
 var repository = [];
-
+// objects to fill the array
 var charmander = {
   name: 'Charmander',
   height: 6,
@@ -22,7 +23,7 @@ repository.push(charmander, bulbasaur, squirtle);
 
 console.log(repository);
 
-
+// iterate positions from the pokemon array
 for (i = 0; i < repository.length; i++) {
   if (repository[i].height > 6) {
   document.write('<p>' + repository[i].name + ' (height: ' + repository[i].height + ') - Wow that\'s big! </p>');
