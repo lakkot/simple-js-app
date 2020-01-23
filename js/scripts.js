@@ -21,10 +21,11 @@ var squirtle = {
 //add objects to pokemon array
 repository.push(charmander, bulbasaur, squirtle);
 
-
+/*printing first aray to console - inactive
 console.log(repository);
+*/
 
-// iterate name and height from the pokemon array, emphasize ones above 0.6 height
+/* iterate name and height from the pokemon array, emphasize ones above 0.6 height - inactive
 for (i = 0; i < repository.length; i++) {
   if (repository[i].height > 0.6) {
   document.write('<p>' + repository[i].name + ' (height: ' + repository[i].height + ') - Wow that\'s big! </p>');
@@ -32,8 +33,9 @@ for (i = 0; i < repository.length; i++) {
   document.write('<p>' + repository[i].name + ' (height: ' + repository[i].height + ') </p>');
   }
 }
+*/
 
-// code like above, but written as function (in case you want to use it multiple times)
+/* code like above, but written as function (in case you want to use it multiple times) - inactive
 function printArrayDetails() {
   for (i = 0; i < repository.length; i++) {
     if (repository[i].height > 0.6) {
@@ -45,6 +47,7 @@ function printArrayDetails() {
 }
 
 printArrayDetails();
+*/
 
 //second pokemon array
 var repository2 = [
@@ -66,3 +69,18 @@ function printArrayDetails2(pokemonList) {
 
 printArrayDetails2(repository);
 printArrayDetails2(repository2);
+
+
+// first function with a 'return' statement. Simple division of two numbers with a not about not dividing with 0
+function divide(dividend, divisor) {
+  if (divisor === 0) {
+    return 'What is wrong with you!'
+  }else {
+    var division = dividend / divisor;
+    return division;
+  }
+}
+
+
+console.log(divide(5, 10));
+console.log(divide(10, 0));
