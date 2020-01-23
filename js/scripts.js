@@ -33,7 +33,7 @@ for (i = 0; i < repository.length; i++) {
   }
 }
 
-// code like above, but writeen as function (in case you want to use it multiple times)
+// code like above, but written as function (in case you want to use it multiple times)
 function printArrayDetails() {
   for (i = 0; i < repository.length; i++) {
     if (repository[i].height > 0.6) {
@@ -46,13 +46,14 @@ function printArrayDetails() {
 
 printArrayDetails();
 
-// simmilar function, but with parameters in order to be used with multiple arrays
+//second pokemon array
 var repository2 = [
   {name: 'Pidgeot', height: 1.5, abilities: ['keen-eye', 'tangled-feet']},
   {name: 'Vulpix', height: 0.6, abilities: ['flash-fire', 'drought']},
   {name: 'Pikachu', height: 0.4, abilities: ['static', 'lightningrod']}
 ];
 
+// simmilar function, but with parameters in order to be used with multiple arrays
 function printArrayDetails2(pokemonList) {
   for (i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height > 0.6) {
