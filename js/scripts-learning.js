@@ -118,3 +118,19 @@ var names = ['John', 'Anne', 'Carly'];
 names.indexOf('John'); // 0
 names.indexOf('Bob'); // -1 (not found in the array)
 //If you specifically need the last occurrence of an item in an array, however, you can use the .lastIndexOf()
+
+
+
+
+// for vs forEach:
+var foodList = ['tuna', 'cheese', 'salad'];
+
+document.write('<h3>===for LOOP===</h3>');
+for(var i = 0; i < foodList.length; i++){
+  document.write('<p>' + foodList[i] + '</p>');
+}
+
+document.write('<h3>===forEach LOOP===</h3>');
+foodList.forEach(function(currentItem){
+  document.write('<p>' + currentItem + '</p>');
+});
