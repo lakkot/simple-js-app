@@ -69,18 +69,3 @@ function printArrayDetails2(pokemonList) {
 
 printArrayDetails2(repository);
 printArrayDetails2(repository2);
-
-
-// first function with a 'return' statement. Simple division of two numbers with a not about not dividing with 0
-function divide(dividend, divisor) {
-  if (divisor === 0) {
-    return 'What is wrong with you!'
-  }else {
-    var division = dividend / divisor;
-    return division;
-  }
-}
-
-
-console.log(divide(5, 10));
-console.log(divide(10, 0));
