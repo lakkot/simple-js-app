@@ -67,5 +67,15 @@ function printArrayDetails2(pokemonList) {
   }
 }
 
-printArrayDetails2(repository);
 printArrayDetails2(repository2);
+
+// same effect, bu with using a forEach loop
+function printArrayDetails3(pokemonList) {
+  if (pokemonList.height > 0.6) {
+    document.write('<p>' + pokemonList.name + ' (height: ' + pokemonList.height + ') - Wow that\'s big! </p>')
+  } else {
+    document.write('<p>' + pokemonList.name + ' (height: ' + pokemonList.height + ') </p>')
+  }
+}
+
+repository.forEach(printArrayDetails3);
