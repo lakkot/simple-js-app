@@ -87,7 +87,7 @@ var pokemonRepository3 = (function () {
 
   //functions that control how you can access the array
   function add(pokemon) {
-    if (typeof(pokemon) === 'object') {
+    if (typeof(pokemon) === 'object' || Object.keys(pokemon) === 'name' && 'height' && 'abilities') {
       repository3.push(pokemon);
     } else {
       document.write('<p>Please reformat your Pokemon as Object</p>')
