@@ -79,3 +79,58 @@ function printArrayDetails3(pokemonList) {
 }
 
 repository.forEach(printArrayDetails3);
+
+// this time, creating an array that inside a variale, to enable control of access to the array
+var pokemonRepository3 = (function () {
+  //actual repository (empty)
+  var repository3 = [];
+
+  //functions that control how you can access the array
+  function add(pokemon) {
+    if (typeof(pokemon) === 'object') {
+      repository3.push(pokemon);
+    } else {
+      document.write('<p>Please reformat your Pokemon as Object</p>')
+    }
+  }
+
+  function getAll() {
+    return repository3;
+  }
+  //return function results to be used outsie the function (e.g. pokemonRepository3.add)
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
+//new set of pokemons
+var golbat = {
+  name: 'Golbat',
+  height: 1.6,
+  abilities: ['inner-focus', 'infiltrator']
+}
+
+var venonat = {
+  name: 'Venonat',
+  height: 1.0,
+  abilities: ['runaway', 'tinted-legs']
+}
+
+var machoke = {
+  name: 'Machoke',
+  height: 1.5,
+  abilities: ['guts', 'stead-fast']
+}
+//pokemon that is not an object, to try out the typeof function
+var falsePokemon = 12;
+
+//adding pokemons to new arraay (how to do it in 1 line?)
+pokemonRepository3.add(falsePokemon);
+pokemonRepository3.add(golbat);
+pokemonRepository3.add(venonat);
+pokemonRepository3.add(machoke);
+console.log(pokemonRepository3.getAll());
+
+//reusing the same printArrayDetails3 function used in previous array with a forEach loop ('pokemonRepository3.getAll()' would be equivalent to repository3 if the array was accessible globally)
+pokemonRepository3.getAll().forEach(printArrayDetails3);
