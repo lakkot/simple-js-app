@@ -134,3 +134,15 @@ document.write('<h3>===forEach LOOP===</h3>');
 foodList.forEach(function(currentItem){
   document.write('<p>' + currentItem + '</p>');
 });
+
+/*Traversing Nodes
+Besides selecting nodes, there are many functions for traversing from one node to another. The following functions can be called on any single DOM node (i.e., either the result of querySelector() or a single item from querySelectorAll() that you’ve selected using bracket notation or forEach()):
+*/
+var $element = document.querySelector('.bob');
+$element.parentElement; // Get the parent node of the element
+$element.nextElementSibling; // Get the next sibling element, or null if it’s the last one
+$element.previousElementSibling; // Get the previous sibling element, or null if it’s the first one
+$element.firstElementChild; // The first child of the element
+$element.lastElementChild; // The last child of the element
+$element.childElementCount; // The number of children this element has
+$element.children; // (IMPORTANT: Not recommended) The direct children of this element
