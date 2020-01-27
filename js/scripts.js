@@ -134,3 +134,9 @@ console.log(pokemonRepository3.getAll());
 
 //reusing the same printArrayDetails3 function used in previous array with a forEach loop ('pokemonRepository3.getAll()' would be equivalent to repository3 if the array was accessible globally)
 pokemonRepository3.getAll().forEach(printArrayDetails3);
+
+
+var $mainTitle = document.querySelector('h1');
+console.log($mainTitle.innerText); // -> <h1></h1>
+$mainTitle.innerText = 'Pokedex';
+console.log($mainTitle.innerText); // -> <h1>*</h1>
