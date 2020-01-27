@@ -146,3 +146,29 @@ $element.firstElementChild; // The first child of the element
 $element.lastElementChild; // The last child of the element
 $element.childElementCount; // The number of children this element has
 $element.children; // (IMPORTANT: Not recommended) The direct children of this element
+
+
+var newElement = document.createElement('button');
+Pretty cool, right? And it can be more than a button, too—you can specify any HTML tag name you want.
+
+f you were to look for this button on your page, however, you wouldn’t find it. That’s because, while the button has been created, it’s still detached, meaning it only exists virtually. You can still do everything with it that JavaScript allows, but it’s not actually present on the page. For that, you need to append it to an element on the page.
+
+One of the methods for properly appending HTML elements is appendChild. For example, if you were to replicate what was done in the innerHTML example above, only this time, using appendChild, you could do something like this:
+
+-- HTML --
+<div class='container'></div>
+
+-- JAVASCRIPT --
+var $container = document.querySelector('.container');
+var button = document.createElement('button');
+button.innerText = "Click Me";
+$container.appendChild(button);
+
+-- HTML --
+<div class='container'>
+  <p>This is a paragraph</p>
+</div>
+
+-- JAVASCRIPT --
+var $elementToRemove = document.querySelector('p');
+$elementToRemove.parentElement.removeChild($elementToRemove);
