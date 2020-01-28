@@ -4,6 +4,8 @@ console.log($mainTitle.innerText); // -> <h1></h1>
 $mainTitle.innerText = 'Pokedex';
 console.log($mainTitle.innerText); // -> <h1>*</h1>
 
+
+//-----Creating various repositories - empty, full and IIFE accessible------
 // empty repository for pokemons
 var repository = [];
 // objects to fill the array
@@ -71,10 +73,13 @@ var machoke = {
   abilities: ['guts', 'stead-fast']
 }
 
-//adding pokemons to new array (how to do it in 1 line?)
+//adding pokemons to new array
 pokemonRepository3.add(golbat);
 pokemonRepository3.add(venonat);
 pokemonRepository3.add(machoke);
+//-------------end of pokemon arrays--------------------------
+
+
 
 //function to push items to one big array
 function combineArrays(oldArray, newArray) {
