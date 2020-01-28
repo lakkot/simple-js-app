@@ -79,23 +79,7 @@ pokemonRepository3.add(venonat);
 pokemonRepository3.add(machoke);
 //-------------end of pokemon arrays--------------------------
 
-
-
-//function to push items to one big array
-function combineArrays(oldArray, newArray) {
-  for (i = 0; i < oldArray.length; i++) {
-    newArray.push(oldArray[i]);
-  }
-};
-
-//combine all arrays into main Pokemon Repository
-var mainRepository = [];
-combineArrays(repository, mainRepository);
-combineArrays(repository2, mainRepository);
-combineArrays(pokemonRepository3.getAll(), mainRepository);
-console.log(mainRepository);
-
-//create the ultimate repository (just like mainRepository but IIFE)
+//create the ultimate repository for all Pokemons in IIFE
 var ultimateRepository = (function() {
   var ultimateRepository = []
 
@@ -126,18 +110,34 @@ var ultimateRepository = (function() {
     $pokemonMainList.appendChild($listItem);
     //nesting a button inside the list item
     $listItem.appendChild($button);
+    $button.addEventListener('click', function() {
+      showDetails(listItem);
+    });
   }
+
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  };
 
   return {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    showDetails: showDetails
   }
 }());
 
-//copy line items from mainRepository to the IIFE protected ultimateRepository
-combineArrays(mainRepository, ultimateRepository.getAll());
-console.log(ultimateRepository.getAll());
+//function to push items to one big array
+function combineArrays(oldArray, newArray) {
+  for (i = 0; i < oldArray.length; i++) {
+    newArray.push(oldArray[i]);
+  }
+};
+
+//copy line items from to the IIFE protected ultimateRepository
+combineArrays(repository, ultimateRepository.getAll());
+combineArrays(repository2, ultimateRepository.getAll());
+combineArrays(pokemonRepository3.getAll(), ultimateRepository.getAll());
 
 //print items from ultimateRepository to html
 ultimateRepository.getAll().forEach(
