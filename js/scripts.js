@@ -1,96 +1,18 @@
-//adding title with JS
-var $mainTitle = document.querySelector('h1');
-console.log($mainTitle.innerText); // -> <h1></h1>
-$mainTitle.innerText = 'Pokedex';
-console.log($mainTitle.innerText); // -> <h1>*</h1>
-
-
-//-----Creating various repositories - empty, full and IIFE accessible------
-// empty repository for pokemons
-var repository = [];
-// objects to fill the array
-var charmander = {
-  name: 'Charmander',
-  height: 0.6,
-  abilities: ['blaze', 'solar-power']
-}
-
-var bulbasaur = {
-  name: 'Bulbasaur',
-  height: 0.7,
-  abilities: ['chlorophyll', 'overgrow']
-}
-
-var squirtle = {
-  name: 'Squirtle',
-  height: 0.5,
-  abilities: ['rain-dish', 'torrent']
-}
-//add objects to pokemon array
-repository.push(charmander, bulbasaur, squirtle);
-
-//second pokemon array
-var repository2 = [
-  {name: 'Pidgeot', height: 1.5, abilities: ['keen-eye', 'tangled-feet']},
-  {name: 'Vulpix', height: 0.6, abilities: ['flash-fire', 'drought']},
-  {name: 'Pikachu', height: 0.4, abilities: ['static', 'lightningrod']}
-];
-//third array - IIFE format
-var pokemonRepository3 = (function() {
-  //actual repository (empty)
-  var repository3 = [];
-  //functions that control how you can access the array
-  function add(pokemon) {
-    if (typeof(pokemon) === 'object' || Object.keys(pokemon) === 'name' && 'height' && 'abilities') {
-      repository3.push(pokemon);
-    } else {
-      document.write('<p>Please reformat your Pokemon as Object</p>')
-    }
-  }
-  function getAll() {
-    return repository3;
-  }
-  //return function results to be used outsie the function (e.g. pokemonRepository3.add)
-  return {
-    add: add,
-    getAll: getAll
-  };
-})();
-//new set of pokemons
-var golbat = {
-  name: 'Golbat',
-  height: 1.6,
-  abilities: ['inner-focus', 'infiltrator']
-}
-var venonat = {
-  name: 'Venonat',
-  height: 1.0,
-  abilities: ['runaway', 'tinted-legs']
-}
-var machoke = {
-  name: 'Machoke',
-  height: 1.5,
-  abilities: ['guts', 'stead-fast']
-}
-
-//adding pokemons to new array
-pokemonRepository3.add(golbat);
-pokemonRepository3.add(venonat);
-pokemonRepository3.add(machoke);
-//-------------end of pokemon arrays--------------------------
-
 //create the ultimate repository for all Pokemons in IIFE
 var ultimateRepository = (function() {
-  var ultimateRepository = []
-
+  //empty repository
+  var ultimateRepository = [];
+  //variableto get the API link, where the pokemon list will come from
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  //add line item
   function add(pokemon) {
     ultimateRepository.push(pokemon);
   }
-
+  //see all items
   function getAll() {
     return ultimateRepository;
   }
-
+  //create list of items based on what's pulled from API
   function addListItem(listItem) {
     //assign variable to ul list
     var $pokemonMainList = document.querySelector('ul');
@@ -114,34 +36,47 @@ var ultimateRepository = (function() {
       showDetails(listItem);
     });
   }
-
+  //show pokeon details (on click - through event listenet in alllistitem function
   function showDetails(pokemon) {
     console.log(pokemon);
   };
-
+  //promis to load list from the API (only name and url)
+  function loadList() {
+    return fetch(apiUrl).then(function(response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        var pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (error) {
+        console.log(error);
+      })
+    };
+  //make functions available from outside the IIFE
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails
+    showDetails: showDetails,
+    loadList: loadList
   }
 }());
 
-//function to push items to one big array
-function combineArrays(oldArray, newArray) {
-  for (i = 0; i < oldArray.length; i++) {
-    newArray.push(oldArray[i]);
-  }
-};
-
-//copy line items from to the IIFE protected ultimateRepository
-combineArrays(repository, ultimateRepository.getAll());
-combineArrays(repository2, ultimateRepository.getAll());
-combineArrays(pokemonRepository3.getAll(), ultimateRepository.getAll());
-
+/*
 //print items from ultimateRepository to html
 ultimateRepository.getAll().forEach(
   function(item) {
     ultimateRepository.addListItem(item);
   }
 );
+*/
+//print items fetched from API to ultimateRepository
+ultimateRepository.loadList().then(function() {
+  ultimateRepository.getAll().forEach(function(item) {
+    ultimateRepository.addListItem(item);
+  });
+});
