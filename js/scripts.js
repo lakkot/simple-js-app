@@ -1,16 +1,16 @@
 //create the ultimate repository for all Pokemons in IIFE
-var ultimateRepository = (function() {
+var pokemonRepository = (function() {
   //empty repository
-  var ultimateRepository = [];
+  var repository = [];
   //variableto get the API link, where the pokemon list will come from
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   //add line item
   function add(pokemon) {
-    ultimateRepository.push(pokemon);
+    repository.push(pokemon);
   }
   //see all items
   function getAll() {
-    return ultimateRepository;
+    return repository;
   }
   //create list of items based on what's pulled from API
   function addListItem(listItem) {
@@ -36,10 +36,8 @@ var ultimateRepository = (function() {
       showDetails(listItem);
     });
   }
-  //show pokeon details (on click - through event listenet in alllistitem function
-  function showDetails(pokemon) {
-    console.log(pokemon);
-  };
+
+
   //promis to load list from the API (only name and url)
   function loadList() {
     return fetch(apiUrl).then(function(response) {
@@ -56,27 +54,87 @@ var ultimateRepository = (function() {
         console.log(error);
       })
     };
+
+
+    //get data from details API for the selected pokemon
+    function loadDetails(item) {
+      var url = item.detailsUrl;
+      return fetch(url).then(function(response) {
+        return response.json();
+      }).then(function(details) {
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = Object.keys(details.types);
+      }).catch(function(e) {
+        console.error(e);
+      });
+    };
+
+    //show pokemon details by calling the loadDetails API function (on click - through event listenet in alllistitem function
+    function showDetails(item) {
+      pokemonRepository.loadDetails(item).then(function() {
+        console.log(item);
+      });
+    };
+
+
   //make functions available from outside the IIFE
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
+    loadDetails: loadDetails,
     showDetails: showDetails,
     loadList: loadList
-  }
+  };
 }());
 
-/*
-//print items from ultimateRepository to html
-ultimateRepository.getAll().forEach(
-  function(item) {
-    ultimateRepository.addListItem(item);
-  }
-);
-*/
+
 //print items fetched from API to ultimateRepository
-ultimateRepository.loadList().then(function() {
-  ultimateRepository.getAll().forEach(function(item) {
-    ultimateRepository.addListItem(item);
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(item) {
+    pokemonRepository.addListItem(item);
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log();
