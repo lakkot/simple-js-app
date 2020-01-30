@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0 auto;
   width: 80%;
@@ -28,6 +32,36 @@ body {
   text-decoration: none;
 }
 
+#submit-button {
+  margin-right: 0 !important;
+  width: 30px;
+}
+
+form {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+input {
+  text-align: center;
+  font-family: arial;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  min-width: 100px;
+  height: 30px;
+  padding-bottom: 5px;
+
+
+}
+
+label {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 h1 {
   border: 1px solid #ddd;
