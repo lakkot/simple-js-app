@@ -118,4 +118,4 @@ function validatePassword() {
 }
 
 console.log(validateEmail());
-console.log(validatePassword());
+console.log(validatePassword);
