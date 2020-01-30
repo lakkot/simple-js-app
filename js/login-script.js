@@ -40,10 +40,24 @@ function validateEmail() {
 
 //validate password - must have 8 or more characters
 function validatePassword() {
-  var value = $passwordInput;
-  return value && value.length >= 8;
+  var value = $passwordInput.value;
+
+  if(!value) {
+    showErrorMessage($passwordInput, 'password is required');
+    return false;
+  }
+
+  if(value.length < 8) {
+    showErrorMessage($passwordInput, 'password must be at least 8 characters long');
+    return false;
+  }
+
+  if($passwordInput, null) {
+    return true;
+  }
 }
 
 
 
 $emailInput.addEventListener('input', validateEmail);
+$passwordInput.addEventListener('input', validatePassword);
