@@ -98,43 +98,24 @@ pokemonRepository.loadList().then(function() {
 });
 
 
+//-------validation of email and password--------
+//select input from html
+var $emailInput = document.querySelector('#emailinput');
+var $passwordInput = document.querySelector('#passwordinput');
 
+//validate email - must have @ and . sign
+function validateEmail() {
+  var value = $emailInput.value;
+  var hasAtSign = value.indexOf('@') > -1;
+  var hasDot = value.indexOf('.') > -1;
+  return value && hasAtSign && hasDot;
+}
 
+//validate password - must have 8 or more characters
+function validatePassword() {
+  var value = $passwordInput;
+  return value && value.length >= 8;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-console.log();
+console.log(validateEmail());
+console.log(validatePassword());
