@@ -4,6 +4,8 @@ var pokemonRepository = (function() {
   var repository = [];
   //variableto get the API link, where the pokemon list will come from
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  //choosing variable for modal
+  var $modalContainer = document.querySelector('#modal-container');
   //add line item
   function add(pokemon) {
     repository.push(pokemon);
@@ -21,11 +23,7 @@ var pokemonRepository = (function() {
     // assign variable to button (not existing in html)
     var $button = document.createElement('button');
     // creating a conditional from what will be written inside the button
-    if (listItem.height > 0.6) {
-      $button.innerText = listItem.name + ' - Biggie!';
-    } else {
-      $button.innerText = listItem.name;
-    }
+    $button.innerText = listItem.name;
     //adding a CSS class to the button
     $button.classList.add('button');
     //nesting list items inside a ul item
@@ -65,6 +63,7 @@ var pokemonRepository = (function() {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = Object.keys(details.types);
+        item.abilities = details.abilities;
       }).catch(function(e) {
         console.error(e);
       });
@@ -72,11 +71,40 @@ var pokemonRepository = (function() {
 
     //show pokemon details by calling the loadDetails API function (on click - through event listenet in alllistitem function
     function showDetails(item) {
+      var $textContainer = document.querySelector('.modal-left');
+      var $imageContainer = document.querySelector('#modal-image');
       pokemonRepository.loadDetails(item).then(function() {
+        $textContainer.innerHTML ='';
+        $imageContainer.innerHTML ='';
+        var $modalName = document.createElement('h1');
+        $modalName.innerText = item.name;
+
+        var $modalHeight = document.createElement('p');
+        $modalHeight.classList.add('height');
+        $modalHeight.innerText = 'Height: ' + item.height + ' meters';
+
+        var $modalDescriprion = document.createElement('p');
+        $modalDescriprion.classList.add('description');
+        $modalDescriprion.innerText = item.abilities[0].ability.name + ', ' + item.abilities[1].ability.name;
+        //$modalDescriprion.innerText = abilitiesArray;
+
+        var $modalImage = document.createElement('img');
+        $modalImage.src = item.imageUrl;
+
+        $textContainer.appendChild($modalName);
+        $textContainer.appendChild($modalHeight);
+        $textContainer.appendChild($modalDescriprion);
+        $imageContainer.appendChild($modalImage);
+
         console.log(item);
+
+        $modalContainer.classList.add('is-visible');
       });
     };
 
+    document.querySelector('.close-modal').addEventListener('click', () => {
+      $modalContainer.classList.remove('is-visible');
+    })
 
   //make functions available from outside the IIFE
   return {
