@@ -1,9 +1,27 @@
+:root {
+  --header-height: 60px;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0 auto;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+header {
+  background-color: white;
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  text-align: center;
+}
+
+.page-top {
+  padding-top: var(--header-height);
 }
 
 .button {
@@ -19,17 +37,20 @@ body {
   width: 400px;
   min-width: 200px;
   height: 30px;
+  transition: 0.3s opacity;
 }
 
 .button:hover {
-  background-color: #ddd;
   text-decoration: underline;
+  opacity: 0.8;
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .button:focus {
   outline: none;
-  background-color: #ddd;
   text-decoration: none;
+  opacity: 0.8;
 }
 
 #submit-button {
@@ -67,7 +88,6 @@ input {
 }
 
 h1 {
-  border: 1px solid #ddd;
   text-align: center;
   border-radius: 5px;
 }
@@ -100,6 +120,7 @@ li {
   display: grid;
   text-align: center;
   box-sizing: border-box;
+  animation: fadein 0.5s;
 }
 
 .modal {
@@ -109,7 +130,7 @@ li {
   background: #fff;
   padding: 15px;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   text-align: left;
 }
 
@@ -144,4 +165,23 @@ li {
 
 #modal-image img {
   width: 300px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media all and (max-width: 500px) {
+  .modal-content {
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+  }
+  .modal {
+    width: 320px;
+  }
+  .modal-left {
+    padding-left: 0;
+    margin: 0 auto;
+  }
 }
