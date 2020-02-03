@@ -3,27 +3,34 @@
 
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple JS App</title>
   </head>
 
   <body>
 
-    <h1></h1>
 
-    <div id='modal-container'>
-      <div class='modal'>
-        <button class="close-modal" >close</button>
-        <div class='modal-content'>
-          <div class='modal-left'></div>
-          <div id="modal-image">
-            <img src="img/square.jpg" alt="pokemon photo">
+    <header>
+      <h1>POKEDEX</h1>
+    </header>
+
+    <div class='page-top'></div>
+      <div id='modal-container'>
+        <div class='modal'>
+          <button class="close-modal" >close</button>
+          <div class='modal-content'>
+            <div class='modal-left'></div>
+            <div id="modal-image">
+              <img src="img/square.jpg" alt="pokemon photo">
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
+
 
     <ul class='pokemon-list'></ul>
 
