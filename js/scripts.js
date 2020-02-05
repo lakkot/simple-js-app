@@ -49,9 +49,9 @@ var pokemonRepository = (function() {
         add(pokemon);
       });
     }).catch(function (error) {
-        console.log(error);
+        console.log(error); // eslint-disable-line no-console
       })
-    };
+    }
 
 
     //get data from details API for the selected pokemon
@@ -65,9 +65,9 @@ var pokemonRepository = (function() {
       item.types = Object.keys(details.types);
       item.abilities = details.abilities;
     }).catch(function(e) {
-      console.error(e);
+      console.error(e); // eslint-disable-line no-console
     });
-  };
+  }
 
   //show pokemon details by calling the loadDetails API function (on click - through event listenet in alllistitem function
   function showDetails(item) {
@@ -91,10 +91,10 @@ var pokemonRepository = (function() {
       var abilitiesArray  = [];
       //iterate over the details API to get all abilitie names
       function addAbilities(item) {
-        for (i = 0; i < item.abilities.length; i++) {
-          abilitiesArray.push(' ' + item.abilities[i].ability.name);
+        for (i = 0; i < item.abilities.length; i++) { // eslint-disable-line no-undef
+          abilitiesArray.push(' ' + item.abilities[i].ability.name); // eslint-disable-line no-undef
         }
-      };
+      }
       addAbilities(item);
       //print abilities
       $modalDescriprion.innerText = 'Abilities:' + abilitiesArray;
@@ -111,7 +111,7 @@ var pokemonRepository = (function() {
       //make modal visible
       $modalContainer.classList.add('is-visible');
     });
-  };
+  }
 
   //close modal when 'close' button is clicked
   document.querySelector('.close-modal').addEventListener('click', () => {
